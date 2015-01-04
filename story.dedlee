@@ -1,0 +1,60 @@
+The Metal Invasion
+
+# Items
+o.sonic "Sonic Screwdriver"
+	"Examine"
+		It's your trusty sonic screwdriver. It can do just about everything except it won't work on wood
+	"Lick"
+		You lick the screwdriver. Why any sane person would do that I don't know. Anyway it tastes like metal. Go figure.
+	"Use with..."
+		with.cyberHead
+			Scanning the cyberman's head reveals that most of it's circuitry is damaged from some kind of energy the sonic doesn't recognise. Whatever it was, there was a lot of it.
+
+		You scan the object with the sonic. After a moment the sonic tells you that the object is indeed real.
+
+o.twiNote "Note from Twilight"
+	"Examine"
+		It's a note written by Twilight Sparkle. It reads:<br>
+		"Doctor, I don't know if you'll find this but, I'm gone.<br>
+		I had to leave Ponyville, everypony has. There were these<br>
+		things, creatures made of metal. They attacked everypony<br>
+		we had to evacuate the whole town.<br><br>
+
+		If you want to find me, I'll be in Trottingham with the<br>
+		others.<br><br>
+
+		See you soon,<br>
+		Twilight Sparkle"<br>
+		{{? !story.isInInventory('twiNote')}}
+			<br>Might want to pick up this note for later
+		{{?}}
+	"Get"
+		when !story.isInInventory('twiNote')
+		You take the note, it might be important later. For now you need to find where Trottingham is. There's a set of stairs leading to her room and a door leading outside
+		{{ story.putInInventory('twiNote'); }}
+
+p.intro
+	Hey there, this a demo of an idea I had for a DWA game. Click on the light green text to choose that action
+	{{ story.putInInventory('sonic'); }}
+
+# Start of the game
+p.tardisIntro.first
+	You're in the TARDIS. There is a control console in the centre, you can tell the TARDIS to [[libBasement]]navigate to Equestria[[]] to check on Twilight or you could ((jiggly))give the jiggly lever a go?(())</show>
+
+	pg.jiggly
+		In the end you decide not to do that after what happened the last time somepony touched that.
+
+# Twi's basement
+p.libBasement
+	The TARDIS heaves and groans before landing in the basement of her library. You open the doors to discover cobwebs, that's odd. Normally Twilight keeps her library neat and tidy, not a cobweb in sight. You take no notice and ((call1))call out(()) to see if she's there.
+
+	pg.call1
+		"Twilight! I'm back!" you yell.<br>
+		No response. ((call2))Try again(())
+
+	pg.call2
+		"Twilight, is everything alright?" you yell from the top of your lungs.<br>
+		No answer. You [[libUpStairs]]head up the stairs[[]] to see if she's there.
+
+p.libUpStairs
+	You rush up the stairs, eager to find Twilight and make sure she's ok. As you emerge from the staircase, all the bookshelves are bare. Not a book in sight. How strange. There's {[twiNote]}a note{[]} taped to the front door.
