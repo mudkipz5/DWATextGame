@@ -1,0 +1,327 @@
+<title>DWA Text Adventure</title>
+
+<initscript>
+	story.disableRarity = false;
+	story.disableSugarcube = false;
+</initscript>
+
+<!-- Items -->
+<obj id="sonic" inventoryName="Sonic Screwdriver">
+	<action id="Examine">
+		It's your trusty sonic screwdriver. It can do just about everything except it won't work on wood
+	</action>
+
+	<action id="Lick">
+		You lick the screwdriver. Why any sane person would do that I don't know. Anyway it tastes like metal. Go figure.
+	</action>
+</obj>
+
+<obj id="eqd" inventoryName="Equestria Daily">
+	<action id="Read">
+		<p>Looking at the top of the page, the headline reads “Magical assistants are the future!”. Reading on, the article says:</p>
+
+		<p>A breakthrough in magical achievement was unveiled today at the Consumer Magic Showcase in Las Pegasus. A company by the name of Pencom has developed an object made of metal that can complete basic tasks without pony interaction. The ‘Cyberpod’ was shown flying around a room without wings and retrieving items on command. They even demonstrated how the object was self aware and could complete tasks with the skill of a pony. We’ll have to see how this technology develops in the future.</p>
+	</action>
+</obj>
+
+<obj id="pancakes">
+	<action id="Eat">
+		<p>Sitting down at the table and falling over a few time (how do these ponies do it?). You attempt to eat the pancakes however it’s hard without fingers or cutlery.</p>
+		<p>After finishing your breakfast you <turn to="library">head back into the library.</turn></p>
+	</action>
+
+	<action id="Lick">
+		<p>Mmm... buttery, just like you like it.</p>
+	</action>
+</obj>
+
+<obj id="blueberry" inventoryName="Blueberry Muffin">
+	<action id="Eat">
+		<p>You eat the Blueberry Muffin, it tastes amazing. You really want to go back for more soon.</p>
+		{{ story.removeFromInventory('blueberry'); }}
+	</action>
+</obj>
+<obj id="choc" inventoryName="Chocolate Chip Muffin">
+	<action id="Eat">
+		<p>You eat the Chocolate Chip Muffin. It's got some really nice chocolate chips</p>
+		{{ story.removeFromInventory('choc'); }}
+	</action>
+</obj>
+<obj id="english" inventoryName="English Muffin">
+	<action id="Eat">
+		<p>You eat the English Muffin. This is probably the best muffin you've ever ate. Although it would be better with butter.</p>
+		{{ story.removeFromInventory("english"); }}
+	</action>
+</obj>
+
+
+<page id="intro">
+	{{ story.putInInventory('sonic'); }}
+</page>
+
+<!-- Start of game -->
+<page id="basementIntro" class="first">
+	<p>Opening the TARDIS doors you enter into the basement of Twilight’s Library. The <turn to="tardisIntro">TARDIS is behind you</turn> and the <turn to="introStairs">stairs</turn> are ahead</p>
+</page>
+
+<page id="tardisIntro">
+	<p>Turning around you see the TARDIS, your trusty spacecraft. <turn to="introStairs">You really need to see Twilight though, you’ve been gone for weeks</turn> (probably).</p>
+</page>
+
+<page id="introStairs">
+	<p>Shutting the TARDIS doors you rush up the stairs calling out “Twilight I’m back!” as you climb. Emerging from the staircase, Twilight is sitting on the floor enjoying a copy of Daring Do Adventures.</p>
+
+	<p>Looking across at you she says “Good morning Doctor. How was your trip?”</p>
+	<ol>
+		<li><show paragraph="boring">“Not too bad, a bit boring really”</show></li>
+		<li><show paragraph="good">“Fantastic, shame you didn’t come”</show></li>
+	</ol>
+	
+	<paragraph id="boring">
+		{{ story.lastQuestion = 1; }}
+		{{ story.turnTo("libConvo1"); }}
+	</paragraph>
+	<paragraph id="good">
+		{{ story.lastQuestion = 0; }}
+		{{ story.turnTo("libConvo1"); }}
+	</paragraph>
+</page>
+
+<page id="libConvo1">
+	{{? story.lastQuestion == 1 }}
+		<p>“Oh well, at least you’re back in one piece” she replies</p>
+	{{??}}
+		<p>“Sorry about that, I just felt I needed a break after last time” she replies</p>
+	{{?}}
+	<p>“How late am I?” you ask “and be honest”.</p>
+	<p>“Fashionably!” she replies</p>
+	<ol>
+		<li><show paragraph="scold">Shoot a scolding look at her</show></li>
+		<li><show paragraph="joke">Joke with her and ask again</show></li>
+	</ol>
+
+	<paragraph id="scold">
+		{{ story.lastQuestion = 1; }}
+		{{ story.turnTo("libConvo2"); }}
+	</paragraph>
+	<paragraph id="joke">
+		{{ story.lastQuestion = 0; }}
+		{{ story.turnTo("libConvo2"); }}
+	</paragraph>
+</page>
+
+<page id="libConvo2">
+	{{? story.lastQuestion == 1 }}
+		<p>You stare right at her, infuriated by her lack of honesty.</p>
+		<p>“Oh come on! It was only a joke. It’s been about 5 days” she says with a sharp tone</p>
+		<p>She’s going to remember that...</p>
+	{{??}}
+		<p>“As always Miss Sparkle. But I really need to know, just incase the TARDIS needs recalibrating”</p>
+		<p>“Just about 5 days” she replies</p>
+		<p>“Not too bad then”</p>
+	{{?}}
+	
+	<p>“If you’re hungry I’ve got some pancakes left over from breakfast if you want some”</p>
+	<p>“Thanks Twilight” you reply</p><br>
+
+	<p>Taking a look around the library you see a selection of <turn to="bookshelves">bookshelves</turn>, the door to the <turn to="kitchen">kitchen</turn>, some stairs to <turn to="twiRoom">Twilight’s room</turn> and the <turn to="frontDoor">front door</turn>.</p>
+</page>
+
+<page id="library">
+	<p>Taking a look around the library you see a selection of <turn to="bookshelves">bookshelves</turn>, the door to the <turn to="kitchen">kitchen</turn>, some stairs to <turn to="twiRoom">Twilight’s room</turn> and the <turn to="frontDoor">front door</turn>.</p>
+</page>
+
+<page id="bookshelves">
+	<p>You’ve never really taken a closer look at her book collection. On inspection you notice that most of these books are books you recognise. Harry Trotter and the Prisoner of Tartarus, Sherlock Hooves: A Study in Magic and On the Origin of Ponies. You’re a bit tired to read, <turn to="library">maybe later</turn></p>
+</page>
+
+<page id="kitchen">
+	<p>As you step into the kitchen the scent of buttered pancakes hits your nostrils with delight. Looking to your left there is a table with two chairs. On the table there are some <interact with="pancakes">pancakes</interact> and a copy of today’s copy of <interact with="eqd">Equestria Daily.</interact></p>
+</page>
+
+<page id="twiRoom">
+	<p>Her room is clean and simple, she has a bed in the middle with a space bedsheet. On the wall you can see a poster of Starswirl the Bearded and just next to it a <turn to="twiWindow">window</turn> looking over Ponyville. Behind you are the <turn to="library">stairs back down</turn></p>
+</page>
+
+<page id="twiWindow">
+	<p>The window looks out over the town. So many busy ponies are out today, completely unaware of what’s out there. Anyway, there’s loads of houses and you can see Sugarcube Corner from here. <turn to="twiRoom">You turn around back to Twilight’s room</turn></p>
+</page>
+
+<page id="frontDoor">
+	<p>“Twilight! I’m going out!” you yell.</p>
+	<p>“Ok, where are you going?”</p>
+	<p>“Don’t know, just going for a stroll. I’ll be back later”</p>
+	<p>“Bye! Don't get lost!”</p><br>
+
+	<p>You open the door and step outside. Taking a look around the town looks like an old victorian town, just with more yellow and pink… and ponies. Now, what to do? Well you might go to <turn to="sugarcube" id="sugarcube">Sugarcube Corner</turn> and get something to eat. Or maybe you could go see <turn to="rarity" id="rarity">Rarity</turn>, your suit’s looking a bit tattered now so might as well get it touched up a bit.</p>
+</page>
+
+<!-- SUGARCUBE CORNER -->
+<page id="sugarcube">
+	<p>You decide you’re feeling a bit hungry and head down to Sugarcube Corner, might even ask if Pinkie’s there. Walking through the front door, you see it’s as busy as always. Eventually you get to the counter and Mrs. Cake is there to greet you.</p>
+	<p>“Hello there dear, what can I get you?”</p>
+	<p>“Hi, yes, can I have a…”</p>
+	<ul>
+		<li><show paragraph="blueberry">Blueberry Muffin</show></li>
+		<li><show paragraph="choc">Chocolate Chip Muffin</show></li>
+		<li><show paragraph="english">English Muffin</show></li>
+	</ul>
+
+	<paragraph id="blueberry">
+		{{ story.lastQuestion = 1; story.cupcake = 1; }}
+		{{ story.turnTo("sugarcubeCon1"); }}
+	</paragraph>
+	<paragraph id="choc">
+		{{ story.lastQuestion = 2; story.cupcake = 2; }}
+		{{ story.turnTo("sugarcubeCon1"); }}
+	</paragraph>
+	<paragraph id="english">
+		{{ story.lastQuestion = 3; story.cupcake = 3; }}
+		{{ story.turnTo("sugarcubeCon1"); }}
+	</paragraph>
+</page>
+
+<page id="sugarcubeCon1">
+	{{? story.lastQuestion == 1 }}
+		<p>“Ok, one Blueberry Muffin coming up!”</p>
+	{{?}}
+	{{? story.lastQuestion == 2}}
+		<p>“Good choice, I’ll get that ready for you now”</p>
+	{{?}}
+	{{? story.lastQuestion == 3}}
+		<p>“Interesting choice, don’t get many ponies choosing that muffin”</p>
+	{{?}}
+	<p>She turns to go get your order but just before she leaves, you…</p>
+
+	<ul>
+		<li><show paragraph="ask">Ask if Pinkie’s there</show></li>
+		<li><show paragraph="wait">Just smile and wave</show></li>
+	</ul>
+
+	<paragraph id="ask">
+		{{ story.lastQuestion = 1; }}
+		{{ story.turnTo("sugarcubeCon2"); }}
+	</paragraph>
+	<paragraph id="wait">
+		{{ story.lastQuestion = 2; }}
+		{{ story.turnTo("sugarcubeCon2"); }}
+	</paragraph>
+</page>
+
+<page id="sugarcubeCon2">
+	{{ story.disableSugarcube = true; }}
+
+	{{? story.lastQuestion == 1 }}
+		<p>“Hey, er, one quick thing before you go. Is Pinkie here?”</p>
+		<p>“Yes dearie, she’s just upstairs. I can go get her if you like?”</p>
+		<p>“That’d be brilliant thank you. Tell her it’s The Doctor”</p>
+		<p>“I’ll be right back, didn’t know she had an appointment”</p><br>
+
+		<p>After a minute you can hear the sounds of banging upstairs, then suddenly, Pinkie Pie appears.</p><br>
+
+		<p>“Hey Doctor! How are ya!”</p>
+		<p>“Not too bad thanks”</p>
+		<p>“Soooo, what’d you come over for?”</p>
+		<p>“I just wanted a bite to eat and to ask you a favour”</p>
+		<p>“Ohmygosh ohmygosh! Yes I’ll come Doctor!”</p>
+		<p>“Wait, you don’t know what I was going to ask you”</p>
+		<turn to="sugarcubeCon2Part2">Continue...</turn>
+		
+	{{??}}
+		<p>You stand there as she gets your muffin from the back. When she returns you wave at her with a big grin on your face.</p>
+
+		<p>“That’ll be 1 bit please” she says.</p>
+		<p>You look around nervously, you don’t have any bits on you.</p>
+		<p>“Ah, well, er, I don’t have any money on me at the moment.”</p>
+		<p>She looks at you, then lets out a big sigh. “Well if you can’t afford it then you’ll have to leave”.</p>
+		<p>You turn and leave. Where to now?</p>
+
+		<p>{{? !story.disableRarity }}Maybe you could go see <turn to="rarity" id="rarity">Rarity</turn>, your suit’s looking a bit tattered now so might as well get it touched up a bit. {{?}}Maybe you’ve had enough of town and would like to <turn to="goHome">go home?</turn></p>
+	{{?}}
+
+</page>
+
+<page id="sugarcubeCon2Part2">
+	<p>“Oh I know, you want me to come on an ADVENTURE with you”</p>
+	<p>“Well, not really. I was wondering if you’d help me set up a party for Spike. I’ve heard it’s his birthday soon”</p>
+	<p>“Awesome, I’ll totally help you with that!”</p>
+	<p>“Thanks Pinkie”</p>
+	<p>“Oh don’t forget your cupcake”</p>
+	<p>“Wait don’t I need to pay for this?”</p>
+	<p>“No, don’t be silly. Anything for you Doctor”</p>
+	<p>You wave goodbye to Pinkie and leave the store. Where to now?</p>
+	{{? story.cupcake == 1 }}
+		{{ story.putInInventory('blueberry'); }}
+	{{?}}
+
+	{{? story.cupcake == 2 }}
+		{{ story.putInInventory('choc'); }}
+	{{?}}
+
+	{{? story.cupcake == 3 }}
+		{{ story.putInInventory('english'); }}
+	{{?}}
+
+	{{ story.disableSugarcube = true; }}
+
+	<p>{{? !story.disableRarity }}Well you might go see <turn to="rarity" id="rarity">Rarity</turn>, your suit’s looking a bit tattered now so might as well get it touched up a bit. {{?}}Maybe you’ve had enough of town and would like to <turn to="goHome">go home?</turn></p>
+</page>
+
+<page id="rarity">
+	<p>You walk up to the boutique and knock on the door.</p><br>
+
+	<p>“Hellooo. Is anypony home?”</p>
+	<p>Then from inside you hear “Yes! Hold on a minute!”</p>
+	<p>Rarity opens the door and after seeing you she starts to grin. “Oh, Clockwork. What an unexpected visit”</p>
+	<p>“Yes quite. Listen, I was hoping you would do me a favour”</p>
+	<p>“Do come in please”</p>
+	<p>You accept her invite and walk into the boutique.</p><br>
+
+	<p>“Now, what is it that you wanted dear?”</p>
+	<p>“Well I need my suit fixed up, it’s looking a bit worn out”</p>
+	<p>“Good heavens Clockwork! What have you been up to. Now, I can patch it up but if you like I can change it if you like?”</p>
+
+	<ul>
+		<li><show paragraph="fix">Just fix it</show></li>
+		<li><show paragraph="brighten">Brighten it up a bit</show></li>
+		<li><show paragraph="new">Make me a new one</show></li>
+	</ul>
+
+	<paragraph id="fix">
+		{{ story.lastQuestion = 1; }}
+		{{ story.turnTo("rarityCon1"); }}
+	</paragraph>
+	<paragraph id="brighten">
+		{{ story.lastQuestion = 2; }}
+		{{ story.turnTo("rarityCon1"); }}
+	</paragraph>
+	<paragraph id="new">
+		{{ story.lastQuestion = 3; }}
+		{{ story.turnTo("rarityCon1"); }}
+	</paragraph>
+</page>
+
+<page id="rarityCon1">
+	{{? story.lastQuestion == 1 }}
+		<p>“It’s fine as it is, I’d rather not change it too much”</p>
+	{{?}}
+
+	{{? story.lastQuestion == 2 }}
+		<p>“Actually if you could just, I don’t know, brighten up the colours a bit. That’d be great”</p>
+	{{?}}
+
+	{{? story.lastQuestion == 3 }}
+		<p>“Well, this suit’s getting a bit old now. Could you make me a new one?”</p>
+	{{?}}
+
+	<p>“Oh anything for you Clockwork! I’ll have it ready in 2 days”</p>
+	<p>“Thank you Rarity”</p>
+	<p>You take off your suit and she picks it up and puts it on her desk then leave the boutique.</p>
+	<p>{{? !story.disableSugarcube }}Where to now? Well you might go to <turn to="sugarcube" id="sugarcube">Sugarcube Corner</turn> and get something to eat. {{?}}Maybe you’ve had enough of town and would like to <turn to="goHome">go home?</turn></p>
+
+	{{ story.disableRarity = true; }}
+</page>
+
+<page id="goHome">
+	That's it for this version. Still writing the story and learning the engine. Hope you enjoyed it!
+</page>
