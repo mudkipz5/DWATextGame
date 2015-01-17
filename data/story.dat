@@ -18,9 +18,12 @@
 
 <obj id="eqd" inventoryName="Equestria Daily">
 	<action id="Read">
+		{{? !story.newspaperRead }}
 		<p>Looking at the top of the page, the headline reads “Magical assistants are the future!”. Reading on, the article says:</p>
 
 		<p>A breakthrough in magical achievement was unveiled today at the Consumer Magic Showcase in Las Pegasus. A company by the name of Pencom has developed an object made of metal that can complete basic tasks without pony interaction. The ‘Cyberpod’ was shown flying around a room without wings and retrieving items on command. They even demonstrated how the object was self aware and could complete tasks with the skill of a pony. We’ll have to see how this technology develops in the future.</p>
+		{{?}}
+		{{ story.newspaperRead = true; }}
 	</action>
 </obj>
 
@@ -88,13 +91,14 @@
 </page>
 
 <page id="libConvo1">
+	<p>
 	{{? story.lastQuestion == 1 }}
-		<p>“Oh well, at least you’re back in one piece” she replies</p>
+		“Oh well, at least you’re back in one piece” she replies<br>
 	{{??}}
-		<p>“Sorry about that, I just felt I needed a break after last time” she replies</p>
+		“Sorry about that, I just felt I needed a break after last time” she replies<br>
 	{{?}}
-	<p>“How late am I?” you ask “and be honest”.</p>
-	<p>“Fashionably!” she replies</p>
+	“How late am I?” you ask “and be honest”.<br>
+	“Fashionably!” she replies</p>
 	<ol>
 		<li><show paragraph="scold">Shoot a scolding look at her</show></li>
 		<li><show paragraph="joke">Joke with her and ask again</show></li>
@@ -111,18 +115,19 @@
 </page>
 
 <page id="libConvo2">
+	<p>
 	{{? story.lastQuestion == 1 }}
-		<p>You stare right at her, infuriated by her lack of honesty.</p>
-		<p>“Oh come on! It was only a joke. It’s been about 5 days” she says with a sharp tone</p>
-		<p>She’s going to remember that...</p>
+		You stare right at her, infuriated by her lack of honesty.<br>
+		“Oh come on! It was only a joke. It’s been about 5 days” she says with a sharp tone<br>
+		She’s going to remember that...<br>
 	{{??}}
-		<p>“As always Miss Sparkle. But I really need to know, just incase the TARDIS needs recalibrating”</p>
-		<p>“Just about 5 days” she replies</p>
-		<p>“Not too bad then”</p>
+		“As always Miss Sparkle. But I really need to know, just incase the TARDIS needs recalibrating”<br>
+		“Just about 5 days” she replies<br>
+		“Not too bad then”<br>
 	{{?}}
 	
-	<p>“If you’re hungry I’ve got some pancakes left over from breakfast if you want some”</p>
-	<p>“Thanks Twilight” you reply</p><br>
+	“If you’re hungry I’ve got some pancakes left over from breakfast if you want some”<br>
+	“Thanks Twilight” you reply</p>
 
 	<p>Taking a look around the library you see a selection of <turn to="bookshelves">bookshelves</turn>, the door to the <turn to="kitchen">kitchen</turn>, some stairs to <turn to="twiRoom">Twilight’s room</turn> and the <turn to="frontDoor">front door</turn>.</p>
 </page>
@@ -148,10 +153,10 @@
 </page>
 
 <page id="frontDoor">
-	<p>“Twilight! I’m going out!” you yell.</p>
-	<p>“Ok, where are you going?”</p>
-	<p>“Don’t know, just going for a stroll. I’ll be back later”</p>
-	<p>“Bye! Don't get lost!”</p><br>
+	<p>“Twilight! I’m going out!” you yell.<br>
+	“Ok, where are you going?”<br>
+	“Don’t know, just going for a stroll. I’ll be back later”<br>
+	“Bye! Don't get lost!”</p>
 
 	<p>You open the door and step outside. Taking a look around the town looks like an old victorian town, just with more yellow and pink… and ponies. Now, what to do? Well you might go to <turn to="sugarcube" id="sugarcube">Sugarcube Corner</turn> and get something to eat. Or maybe you could go see <turn to="rarity" id="rarity">Rarity</turn>, your suit’s looking a bit tattered now so might as well get it touched up a bit.</p>
 </page>
@@ -159,8 +164,8 @@
 <!-- SUGARCUBE CORNER -->
 <page id="sugarcube">
 	<p>You decide you’re feeling a bit hungry and head down to Sugarcube Corner, might even ask if Pinkie’s there. Walking through the front door, you see it’s as busy as always. Eventually you get to the counter and Mrs. Cake is there to greet you.</p>
-	<p>“Hello there dear, what can I get you?”</p>
-	<p>“Hi, yes, can I have a…”</p>
+	<p>“Hello there dear, what can I get you?”<br>
+	“Hi, yes, can I have a…”</p>
 	<ul>
 		<li><show paragraph="blueberry">Blueberry Muffin</show></li>
 		<li><show paragraph="choc">Chocolate Chip Muffin</show></li>
@@ -182,16 +187,17 @@
 </page>
 
 <page id="sugarcubeCon1">
+	<p>
 	{{? story.lastQuestion == 1 }}
-		<p>“Ok, one Blueberry Muffin coming up!”</p>
+		“Ok, one Blueberry Muffin coming up!”<br>
 	{{?}}
 	{{? story.lastQuestion == 2}}
-		<p>“Good choice, I’ll get that ready for you now”</p>
+		“Good choice, I’ll get that ready for you now”<br>
 	{{?}}
 	{{? story.lastQuestion == 3}}
-		<p>“Interesting choice, don’t get many ponies choosing that muffin”</p>
+		“Interesting choice, don’t get many ponies choosing that muffin”<br>
 	{{?}}
-	<p>She turns to go get your order but just before she leaves, you…</p>
+	She turns to go get your order but just before she leaves, you…</p>
 
 	<ul>
 		<li><show paragraph="ask">Ask if Pinkie’s there</show></li>
@@ -210,31 +216,31 @@
 
 <page id="sugarcubeCon2">
 	{{ story.disableSugarcube = true; }}
-
+	<p>
 	{{? story.lastQuestion == 1 }}
-		<p>“Hey, er, one quick thing before you go. Is Pinkie here?”</p>
-		<p>“Yes dearie, she’s just upstairs. I can go get her if you like?”</p>
-		<p>“That’d be brilliant thank you. Tell her it’s The Doctor”</p>
-		<p>“I’ll be right back, didn’t know she had an appointment”</p><br>
+		“Hey, er, one quick thing before you go. Is Pinkie here?”<br>
+		“Yes dearie, she’s just upstairs. I can go get her if you like?”<br>
+		“That’d be brilliant thank you. Tell her it’s The Doctor”<br>
+		“I’ll be right back, didn’t know she had an appointment”</p>
 
-		<p>After a minute you can hear the sounds of banging upstairs, then suddenly, Pinkie Pie appears.</p><br>
+		<p>After a minute you can hear the sounds of banging upstairs, then suddenly, Pinkie Pie appears.</p>
 
-		<p>“Hey Doctor! How are ya!”</p>
-		<p>“Not too bad thanks”</p>
-		<p>“Soooo, what’d you come over for?”</p>
-		<p>“I just wanted a bite to eat and to ask you a favour”</p>
-		<p>“Ohmygosh ohmygosh! Yes I’ll come Doctor!”</p>
-		<p>“Wait, you don’t know what I was going to ask you”</p>
+		<p>“Hey Doctor! How are ya!”<br>
+		“Not too bad thanks”<br>
+		“Soooo, what’d you come over for?”<br>
+		“I just wanted a bite to eat and to ask you a favour”<br>
+		“Ohmygosh ohmygosh! Yes I’ll come Doctor!”<br>
+		“Wait, you don’t know what I was going to ask you”</p>
 		<turn to="sugarcubeCon2Part2">Continue...</turn>
 		
 	{{??}}
-		<p>You stand there as she gets your muffin from the back. When she returns you wave at her with a big grin on your face.</p>
+		You stand there as she gets your muffin from the back. When she returns you wave at her with a big grin on your face.</p>
 
-		<p>“That’ll be 1 bit please” she says.</p>
-		<p>You look around nervously, you don’t have any bits on you.</p>
-		<p>“Ah, well, er, I don’t have any money on me at the moment.”</p>
-		<p>She looks at you, then lets out a big sigh. “Well if you can’t afford it then you’ll have to leave”.</p>
-		<p>You turn and leave. Where to now?</p>
+		<p>“That’ll be 1 bit please” she says.<br>
+		You look around nervously, you don’t have any bits on you.<br>
+		“Ah, well, er, I don’t have any money on me at the moment.”<br>
+		She looks at you, then lets out a big sigh. “Well if you can’t afford it then you’ll have to leave”.<br>
+		You turn and leave. Where to now?</p>
 
 		<p>{{? !story.disableRarity }}Maybe you could go see <turn to="rarity" id="rarity">Rarity</turn>, your suit’s looking a bit tattered now so might as well get it touched up a bit. {{?}}Maybe you’ve had enough of town and would like to <turn to="goHome">go home?</turn></p>
 	{{?}}
@@ -242,14 +248,14 @@
 </page>
 
 <page id="sugarcubeCon2Part2">
-	<p>“Oh I know, you want me to come on an ADVENTURE with you”</p>
-	<p>“Well, not really. I was wondering if you’d help me set up a party for Spike. I’ve heard it’s his birthday soon”</p>
-	<p>“Awesome, I’ll totally help you with that!”</p>
-	<p>“Thanks Pinkie”</p>
-	<p>“Oh don’t forget your cupcake”</p>
-	<p>“Wait don’t I need to pay for this?”</p>
-	<p>“No, don’t be silly. Anything for you Doctor”</p>
-	<p>You wave goodbye to Pinkie and leave the store. Where to now?</p>
+	<p>“Oh I know, you want me to come on an ADVENTURE with you”<br>
+	“Well, not really. I was wondering if you’d help me set up a party for Spike. I’ve heard it’s his birthday soon”<br>
+	“Awesome, I’ll totally help you with that!”<br>
+	“Thanks Pinkie”<br>
+	“Oh don’t forget your cupcake”<br>
+	“Wait don’t I need to pay for this?”<br>
+	“No, don’t be silly. Anything for you Doctor”<br>
+	You wave goodbye to Pinkie and leave the store. Where to now?</p>
 	{{? story.cupcake == 1 }}
 		{{ story.putInInventory('blueberry'); }}
 	{{?}}
@@ -268,18 +274,18 @@
 </page>
 
 <page id="rarity">
-	<p>You walk up to the boutique and knock on the door.</p><br>
+	<p>You walk up to the boutique and knock on the door.</p>
 
-	<p>“Hellooo. Is anypony home?”</p>
-	<p>Then from inside you hear “Yes! Hold on a minute!”</p>
-	<p>Rarity opens the door and after seeing you she starts to grin. “Oh, Clockwork. What an unexpected visit”</p>
-	<p>“Yes quite. Listen, I was hoping you would do me a favour”</p>
-	<p>“Do come in please”</p>
-	<p>You accept her invite and walk into the boutique.</p><br>
+	<p>“Hellooo. Is anypony home?”<br>
+	Then from inside you hear “Yes! Hold on a minute!”<br>
+	Rarity opens the door and after seeing you she starts to grin. “Oh, Clockwork. What an unexpected visit”<br>
+	“Yes quite. Listen, I was hoping you would do me a favour”<br>
+	“Do come in please”</p>
+	<p>You accept her invite and walk into the boutique.</p>
 
-	<p>“Now, what is it that you wanted dear?”</p>
-	<p>“Well I need my suit fixed up, it’s looking a bit worn out”</p>
-	<p>“Good heavens Clockwork! What have you been up to. Now, I can patch it up but if you like I can change it if you like?”</p>
+	<p>“Now, what is it that you wanted dear?”<br>
+	“Well I need my suit fixed up, it’s looking a bit worn out”<br>
+	“Good heavens Clockwork! What have you been up to. Now, I can patch it up but if you like I can change it if you like?”</p>
 
 	<ul>
 		<li><show paragraph="fix">Just fix it</show></li>
@@ -302,20 +308,21 @@
 </page>
 
 <page id="rarityCon1">
+	<p>
 	{{? story.lastQuestion == 1 }}
-		<p>“It’s fine as it is, I’d rather not change it too much”</p>
+		“It’s fine as it is, I’d rather not change it too much”<br>
 	{{?}}
 
 	{{? story.lastQuestion == 2 }}
-		<p>“Actually if you could just, I don’t know, brighten up the colours a bit. That’d be great”</p>
+		“Actually if you could just, I don’t know, brighten up the colours a bit. That’d be great”<br>
 	{{?}}
 
 	{{? story.lastQuestion == 3 }}
-		<p>“Well, this suit’s getting a bit old now. Could you make me a new one?”</p>
+		“Well, this suit’s getting a bit old now. Could you make me a new one?”<br>
 	{{?}}
 
-	<p>“Oh anything for you Clockwork! I’ll have it ready in 2 days”</p>
-	<p>“Thank you Rarity”</p>
+	“Oh anything for you Clockwork! I’ll have it ready in 2 days”<br>
+	“Thank you Rarity”</p>
 	<p>You take off your suit and she picks it up and puts it on her desk then leave the boutique.</p>
 	<p>{{? !story.disableSugarcube }}Where to now? Well you might go to <turn to="sugarcube" id="sugarcube">Sugarcube Corner</turn> and get something to eat. {{?}}Maybe you’ve had enough of town and would like to <turn to="goHome">go home?</turn></p>
 

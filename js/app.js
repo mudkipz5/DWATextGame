@@ -28,6 +28,6 @@ $(function () {
 			restoreTarget     : $('#restoreHost'),
 			resetTarget       : $('#resetHost'),
 		});
-		$('#version').text("v0.2 Alpha");
+		$('#version').text("v0.2.1 Alpha");
 	});
 });
