@@ -29,12 +29,18 @@
 
 <obj id="pancakes">
 	<action id="Eat">
+		{{? !story.pancakesAte }}
 		<p>Sitting down at the table and falling over a few time (how do these ponies do it?). You attempt to eat the pancakes however it’s hard without fingers or cutlery.</p>
 		<p>After finishing your breakfast you <turn to="library">head back into the library.</turn></p>
+		{{?}}
+		{{ story.pancakesAte = true; }}
 	</action>
 
 	<action id="Lick">
+		{{? !story.pancakesLicked }}
 		<p>Mmm... buttery, just like you like it.</p>
+		{{?}}
+		{{ story.pancakesLicked = true; }}
 	</action>
 </obj>
 
