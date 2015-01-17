@@ -54,7 +54,6 @@ p {
 	overflow      : auto;
 	margin        : 0;
 	border-bottom : none;
-	height        : 24px;
 	background    : #fff;
 	border        : 1px solid #aaa;
 }
@@ -81,7 +80,6 @@ p {
 }
 #inventoryHostWrapper {
 	width       : 150px;
-	float       : left;
 	margin-left : 50%;
 	left        : 300px;
 	position    : absolute;
